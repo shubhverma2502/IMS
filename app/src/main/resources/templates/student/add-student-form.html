@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::body})}"
+      th:with="pageTitle='Add Student', activePage='students'">
+<head>
+    <title>Add Student</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .card {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            font-weight: 600;
+            font-size: 1.3rem;
+        }
+
+        label {
+            font-weight: 500;
+        }
+
+        .btn i {
+            margin-right: 5px;
+        }
+
+        small.text-danger {
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+
+                <div class="card-header">
+                    <i class="fas fa-user-plus"></i> Add New Student
+                </div>
+
+                <div class="card-body">
+
+                    <div th:if="${successMessage}" class="alert alert-success text-center" th:text="${successMessage}"></div>
+
+                    <form th:action="@{/students/add}" th:object="${student}" method="post">
+                        <div class="form-group">
+                            <label><i class="fas fa-user"></i> Name</label>
+                            <input type="text" th:field="*{name}" class="form-control" placeholder="Enter Fullname of Student"/>
+                            <small class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label><i class="fas fa-envelope"></i> Email</label>
+                            <input type="email" th:field="*{email}" class="form-control" placeholder="Enter a valid Email"/>
+                            <small class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label><i class="fas fa-phone"></i> Phone</label>
+                            <input type="text" th:field="*{phone}" class="form-control" placeholder="Enter Mobile Number"/>
+                            <small class="text-danger" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label><i class="fas fa-calendar-alt"></i> Enrollment Date</label>
+                            <input type="date" th:field="*{enrollmentDate}" class="form-control" placeholder="Select Date Of Enrollment"/>
+                            <small class="text-danger" th:if="${#fields.hasErrors('enrollmentDate')}" th:errors="*{enrollmentDate}"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label><i class="fas fa-book"></i> Course</label>
+                            <select th:field="*{course.courseId}" class="form-control" required>
+                                <option value="" disabled selected>Select a course</option>
+                                <option th:each="course : ${courses}"
+                                        th:value="${course.courseId}"
+                                        th:text="${course.name}">
+                                </option>
+                            </select>
+                            <small class="text-danger" th:if="${#fields.hasErrors('course')}" th:errors="*{course}"></small>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
+                            <a href="/students" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Cancel</a>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

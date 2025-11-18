@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Add Instructor</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+
+  <!-- Success message -->
+  <div th:if="${successMessage}" class="alert alert-success">
+    <p th:text="${successMessage}"></p>
+  </div>
+
+  <h2>Add New Instructor</h2>
+  <form th:action="@{/instructor/add}" th:object="${instructor}" method="post">
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" th:field="*{name}" class="form-control" placeholder="Enter Instructor Name"/>
+      <small class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" th:field="*{email}" class="form-control" placeholder="Enter Instructor Email"/>
+      <small class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+    </div>
+
+    <div class="form-group">
+      <label>Specialization</label>
+      <input type="text" th:field="*{specialization}" class="form-control" placeholder="Enter Specialization"/>
+      <small class="text-danger" th:if="${#fields.hasErrors('specialization')}" th:errors="*{specialization}"></small>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="/instructors" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+</body>
+</html>
