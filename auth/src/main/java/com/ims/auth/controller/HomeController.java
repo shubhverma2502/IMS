@@ -51,14 +51,6 @@ public class HomeController {
         return "home";
     }
 
-//    @GetMapping("/students")
-//    public String showStudentsPage(Model model) {
-//        List<Student> students = studentService.getAllStudents();
-//        model.addAttribute("students", students);
-//        model.addAttribute("activePage", "students");
-//        return "student/students";
-//    }
-
     @GetMapping("/instructors")
     public String showInstructorsPage(Model model) {
         List<Instructor> instructors = instructorService.getAllInstructor();

@@ -10,8 +10,7 @@
     </parent>
 
     <groupId>com.ims.main</groupId>
-    <artifactId>app</artifactId>
-     <packaging>war</packaging> 
+    <artifactId>app</artifactId> 
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -52,7 +51,6 @@
     </dependency>
     </dependencies>
     <build>
-    <finalName>ims-app</finalName>
         <plugins>
 
             <!-- Make WAR deployable -->
