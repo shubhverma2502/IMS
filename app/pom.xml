@@ -52,6 +52,7 @@
     </dependency>
     </dependencies>
     <build>
+    <finalName>ims-app</finalName>
         <plugins>
 
             <!-- Make WAR deployable -->
